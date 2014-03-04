@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  LightWeightPlist
 //
 //  Created by 啟倫 陳 on 2014/3/4.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainViewController : UIViewController
 
 @end

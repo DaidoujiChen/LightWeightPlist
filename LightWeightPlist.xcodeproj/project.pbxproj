@@ -13,14 +13,17 @@
 		014B9F2818C575D6000F39BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 014B9F2618C575D6000F39BB /* InfoPlist.strings */; };
 		014B9F2A18C575D6000F39BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F2918C575D6000F39BB /* main.m */; };
 		014B9F2E18C575D6000F39BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F2D18C575D6000F39BB /* AppDelegate.m */; };
-		014B9F3118C575D6000F39BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014B9F2F18C575D6000F39BB /* Main.storyboard */; };
-		014B9F3418C575D6000F39BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F3318C575D6000F39BB /* ViewController.m */; };
 		014B9F3618C575D6000F39BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014B9F3518C575D6000F39BB /* Images.xcassets */; };
 		014B9F3D18C575D6000F39BB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F3C18C575D6000F39BB /* XCTest.framework */; };
 		014B9F3E18C575D6000F39BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F1D18C575D6000F39BB /* Foundation.framework */; };
 		014B9F3F18C575D6000F39BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F2118C575D6000F39BB /* UIKit.framework */; };
 		014B9F4718C575D6000F39BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 014B9F4518C575D6000F39BB /* InfoPlist.strings */; };
 		014B9F4918C575D6000F39BB /* LightWeightPlistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F4818C575D6000F39BB /* LightWeightPlistTests.m */; };
+		014B9F5518C57618000F39BB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F5318C57618000F39BB /* MainViewController.m */; };
+		014B9F5618C57618000F39BB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014B9F5418C57618000F39BB /* MainViewController.xib */; };
+		014B9F5A18C576FC000F39BB /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F5918C576FC000F39BB /* LightWeightPlist.m */; };
+		014B9F5D18C57825000F39BB /* LightWeightPlist+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */; };
+		014B9F6318C578FC000F39BB /* LightWeightPlist+FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +47,21 @@
 		014B9F2B18C575D6000F39BB /* LightWeightPlist-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightWeightPlist-Prefix.pch"; sourceTree = "<group>"; };
 		014B9F2C18C575D6000F39BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		014B9F2D18C575D6000F39BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		014B9F3018C575D6000F39BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		014B9F3218C575D6000F39BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		014B9F3318C575D6000F39BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		014B9F3518C575D6000F39BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		014B9F3B18C575D6000F39BB /* LightWeightPlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightWeightPlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014B9F3C18C575D6000F39BB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		014B9F4418C575D6000F39BB /* LightWeightPlistTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LightWeightPlistTests-Info.plist"; sourceTree = "<group>"; };
 		014B9F4618C575D6000F39BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		014B9F4818C575D6000F39BB /* LightWeightPlistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightWeightPlistTests.m; sourceTree = "<group>"; };
+		014B9F5218C57618000F39BB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		014B9F5318C57618000F39BB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		014B9F5418C57618000F39BB /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		014B9F5818C576FC000F39BB /* LightWeightPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightWeightPlist.h; path = LightWeightPlist/LightWeightPlist.h; sourceTree = "<group>"; };
+		014B9F5918C576FC000F39BB /* LightWeightPlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightWeightPlist.m; path = LightWeightPlist/LightWeightPlist.m; sourceTree = "<group>"; };
+		014B9F5B18C57825000F39BB /* LightWeightPlist+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+AccessObject.h"; path = "LightWeightPlist/LightWeightPlist+AccessObject.h"; sourceTree = "<group>"; };
+		014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+AccessObject.m"; path = "LightWeightPlist/LightWeightPlist+AccessObject.m"; sourceTree = "<group>"; };
+		014B9F6118C578FC000F39BB /* LightWeightPlist+FilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+FilePath.h"; path = "LightWeightPlist/LightWeightPlist+FilePath.h"; sourceTree = "<group>"; };
+		014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+FilePath.m"; path = "LightWeightPlist/LightWeightPlist+FilePath.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +121,12 @@
 		014B9F2318C575D6000F39BB /* LightWeightPlist */ = {
 			isa = PBXGroup;
 			children = (
+				014B9F5718C576B5000F39BB /* LightWeightPlist */,
 				014B9F2C18C575D6000F39BB /* AppDelegate.h */,
 				014B9F2D18C575D6000F39BB /* AppDelegate.m */,
-				014B9F2F18C575D6000F39BB /* Main.storyboard */,
-				014B9F3218C575D6000F39BB /* ViewController.h */,
-				014B9F3318C575D6000F39BB /* ViewController.m */,
+				014B9F5218C57618000F39BB /* MainViewController.h */,
+				014B9F5318C57618000F39BB /* MainViewController.m */,
+				014B9F5418C57618000F39BB /* MainViewController.xib */,
 				014B9F3518C575D6000F39BB /* Images.xcassets */,
 				014B9F2418C575D6000F39BB /* Supporting Files */,
 			);
@@ -150,6 +160,19 @@
 				014B9F4518C575D6000F39BB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		014B9F5718C576B5000F39BB /* LightWeightPlist */ = {
+			isa = PBXGroup;
+			children = (
+				014B9F5818C576FC000F39BB /* LightWeightPlist.h */,
+				014B9F5918C576FC000F39BB /* LightWeightPlist.m */,
+				014B9F5B18C57825000F39BB /* LightWeightPlist+AccessObject.h */,
+				014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */,
+				014B9F6118C578FC000F39BB /* LightWeightPlist+FilePath.h */,
+				014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */,
+			);
+			name = LightWeightPlist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				014B9F3618C575D6000F39BB /* Images.xcassets in Resources */,
+				014B9F5618C57618000F39BB /* MainViewController.xib in Resources */,
 				014B9F2818C575D6000F39BB /* InfoPlist.strings in Resources */,
-				014B9F3118C575D6000F39BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014B9F3418C575D6000F39BB /* ViewController.m in Sources */,
 				014B9F2E18C575D6000F39BB /* AppDelegate.m in Sources */,
+				014B9F5A18C576FC000F39BB /* LightWeightPlist.m in Sources */,
+				014B9F6318C578FC000F39BB /* LightWeightPlist+FilePath.m in Sources */,
+				014B9F5518C57618000F39BB /* MainViewController.m in Sources */,
+				014B9F5D18C57825000F39BB /* LightWeightPlist+AccessObject.m in Sources */,
 				014B9F2A18C575D6000F39BB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,14 +306,6 @@
 				014B9F2718C575D6000F39BB /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		014B9F2F18C575D6000F39BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				014B9F3018C575D6000F39BB /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		014B9F4518C575D6000F39BB /* InfoPlist.strings */ = {
