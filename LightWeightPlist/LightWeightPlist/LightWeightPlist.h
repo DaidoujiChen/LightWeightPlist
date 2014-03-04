@@ -11,7 +11,7 @@
 #define LWPArray(fmt) [LightWeightPlist array:fmt]
 #define LWPDictionary(fmt) [LightWeightPlist dictionary:fmt]
 #define LWPDelete(fmt) [LightWeightPlist delete:fmt]
-#define LWPForceWrite [LightWeightPlist forceWrite]
+#define LWPForceWrite() [LightWeightPlist forceWrite]
 
 @interface LightWeightPlist : NSObject <NSCacheDelegate>
 
