@@ -13,6 +13,7 @@
 #import <objc/runtime.h>
 
 @interface LightWeightPlist (Private)
++(NSString*) objectAddressString : (NSObject*) object;
 
 +(BOOL) setObjectToCache : (id) object withKey : (NSString*) key;
 +(id) objectFromCache : (NSString*) key;
@@ -32,7 +33,7 @@
     
     id associatedObject = objc_getAssociatedObject(self, (__bridge const void *)obj);
     
-    NSString *filename = [PointerMapping objectForKey:[NSString stringWithFormat:@"%p", obj]];
+    NSString *filename = [PointerMapping objectForKey:[self objectAddressString:obj]];
     
     NSString *path = DocumentFile(filename);
     
@@ -42,11 +43,15 @@
         [(NSArray*)associatedObject writeToFile:path atomically:YES];
     }
     
-    [PointerMapping removeObjectForKey:[NSString stringWithFormat:@"%p", obj]];
+    [PointerMapping removeObjectForKey:[self objectAddressString:obj]];
     
 }
 
 #pragma mark - private
+
++(NSString*) objectAddressString : (NSObject*) object {
+    return [NSString stringWithFormat:@"%p", object];
+}
 
 #pragma mark cache handle
 
@@ -57,7 +62,7 @@
         [Cache setObject:emptyObject
                   forKey:key];
         objc_setAssociatedObject(self, (__bridge const void *)[Cache objectForKey:key], object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [PointerMapping setObject:key forKey:[NSString stringWithFormat:@"%p", [Cache objectForKey:key]]];
+        [PointerMapping setObject:key forKey:[self objectAddressString:[Cache objectForKey:key]]];
         return YES;
     } else {
         return NO;
@@ -117,7 +122,7 @@
     [FileManager removeItemAtPath:path error:NULL];
     
     if ([Cache objectForKey:key]) {
-        [PointerMapping removeObjectForKey:[NSString stringWithFormat:@"%p", [Cache objectForKey:key]]];
+        [PointerMapping removeObjectForKey:[self objectAddressString:[Cache objectForKey:key]]];
         [Cache removeObjectForKey:key];
     }
     
