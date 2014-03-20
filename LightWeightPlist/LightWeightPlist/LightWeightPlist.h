@@ -13,7 +13,7 @@
 #define LWPDelete(fmt) [LightWeightPlist delete:fmt]
 #define LWPForceWrite() [LightWeightPlist forceWrite]
 
-@interface LightWeightPlist : NSObject <NSCacheDelegate>
+@interface LightWeightPlist : NSObject
 
 #pragma mark - Common
 

@@ -8,6 +8,8 @@
 
 #import "LightWeightPlist.h"
 
+#import <objc/runtime.h>
+
 #define Cache [LightWeightPlist dataCache]
 #define PointerMapping [LightWeightPlist pointerMapping]
 #define FileManager [LightWeightPlist fileManager]
