@@ -12,7 +12,8 @@
 #import "LightWeightPlist+FilePath.h"
 
 @implementation LightWeightPlist (SourceFromDisk)
-+(instancetype) getPlistFile : (NSString*) filename isArray : (BOOL) isArray inResource : (BOOL) inResource {
+
+id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
     NSString *path;
     
     if (inResource) {
@@ -32,19 +33,20 @@
     }
 }
 
-+(NSMutableArray*) arrayInDocument : (NSString*) key {
-    return (NSMutableArray*)[self getPlistFile:key isArray:YES inResource:NO];
+NSMutableArray* arrayInDocument(NSString* key) {
+    return getPlistFile(key, YES, NO);
 }
 
-+(NSMutableArray*) arrayInResource : (NSString*) key {
-    return (NSMutableArray*)[self getPlistFile:key isArray:YES inResource:YES];
+NSMutableArray* arrayInResource(NSString* key) {
+    return getPlistFile(key, YES, YES);
 }
 
-+(NSMutableDictionary*) dictionaryInDocument : (NSString*) key {
-    return (NSMutableDictionary*)[self getPlistFile:key isArray:NO inResource:NO];
+NSMutableDictionary* dictionaryInDocument(NSString* key) {
+    return getPlistFile(key, NO, NO);
 }
 
-+(NSMutableDictionary*) dictionaryInResource : (NSString*) key {
-    return (NSMutableDictionary*)[self getPlistFile:key isArray:NO inResource:YES];
+NSMutableDictionary* dictionaryInResource(NSString* key) {
+    return getPlistFile(key, NO, YES);
 }
+
 @end

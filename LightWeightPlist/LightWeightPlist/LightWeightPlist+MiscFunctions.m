@@ -9,7 +9,7 @@
 #import "LightWeightPlist+MiscFunctions.h"
 
 @implementation LightWeightPlist (MiscFunctions)
-+(NSString*) objectAddressString : (NSObject*) object {
+NSString* objectAddressString(NSObject* object) {
     return [NSString stringWithFormat:@"%p", object];
 }
 @end

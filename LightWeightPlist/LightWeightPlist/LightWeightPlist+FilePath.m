@@ -10,13 +10,13 @@
 
 @implementation LightWeightPlist (FilePath)
 
-+(NSString*) resourceFolderPath {
+NSString* resourceFolderPath() {
     
     return [[NSBundle mainBundle] bundlePath];
     
 }
 
-+(NSString*) documentFolderPath {
+NSString* documentFolderPath() {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -24,15 +24,15 @@
     
 }
 
-+(NSString*) resourceFolderPathWithFilename : (NSString*) filename {
+NSString* resourceFolderPathWithFilename (NSString* filename) {
     
-    return [[self resourceFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
+    return [resourceFolderPath() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
     
 }
 
-+(NSString*) documentFolderPathWithFilename : (NSString*) filename {
+NSString* documentFolderPathWithFilename (NSString* filename) {
     
-    return [[self documentFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
+    return [documentFolderPath() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
     
 }
 

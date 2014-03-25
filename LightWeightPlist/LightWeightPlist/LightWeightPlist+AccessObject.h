@@ -10,12 +10,14 @@
 
 #import <objc/runtime.h>
 
-#define Cache [LightWeightPlist dataCache]
-#define PointerMapping [LightWeightPlist pointerMapping]
-#define FileManager [LightWeightPlist fileManager]
+#define Cache dataCache()
+#define PointerMapping pointerMapping()
+#define FileManager fileManager()
+
+static Class classItSelf;
 
 @interface LightWeightPlist (AccessObject)
-+(NSCache*) dataCache;
-+(NSMutableDictionary*) pointerMapping;
-+(NSFileManager*) fileManager;
+NSCache* dataCache();
+NSMutableDictionary* pointerMapping();
+NSFileManager* fileManager();
 @end

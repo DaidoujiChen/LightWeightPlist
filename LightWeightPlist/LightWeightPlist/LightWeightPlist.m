@@ -15,13 +15,17 @@
 
 @implementation LightWeightPlist
 
++(void) load {
+    classItSelf = self;
+}
+
 #pragma mark - general function
 #pragma mark common
 
 +(void) delete : (NSString*) key {
 
     [FileManager removeItemAtPath:DocumentFile(key) error:NULL];
-    [self removeObjectFromCache:key];
+    removeObjectFromCache(key);
     
 }
 
@@ -35,15 +39,15 @@
 
 +(NSMutableArray*) array : (NSString*) key {
     
-    if ([self objectFromCache:key]) {
-    } else if ([self arrayInDocument:key]) {
-        [self setObjectToCache:[self arrayInDocument:key] withKey:key];
-    } else if ([self arrayInResource:key]) {
-        [self setObjectToCache:[self arrayInResource:key] withKey:key];
+    if (objectFromCache(key)) {
+    } else if (arrayInDocument(key)) {
+        setObjectToCache(arrayInDocument(key), key);
+    } else if (arrayInResource(key)) {
+        setObjectToCache(arrayInResource(key), key);
     } else {
-        [self setObjectToCache:[NSMutableArray array] withKey:key];
+        setObjectToCache([NSMutableArray array], key);
     }
-    return [self objectFromCache:key];
+    return objectFromCache(key);
     
 }
 
@@ -51,15 +55,15 @@
 
 +(NSMutableDictionary*) dictionary : (NSString*) key {
     
-    if ([self objectFromCache:key]) {
-    } else if ([self dictionaryInDocument:key]) {
-        [self setObjectToCache:[self dictionaryInDocument:key] withKey:key];
-    } else if ([self dictionaryInResource:key]) {
-        [self setObjectToCache:[self dictionaryInResource:key] withKey:key];
+    if (objectFromCache(key)) {
+    } else if (dictionaryInDocument(key)) {
+        setObjectToCache(dictionaryInDocument(key), key);
+    } else if (dictionaryInResource(key)) {
+        setObjectToCache(dictionaryInResource(key), key);
     } else {
-        [self setObjectToCache:[NSMutableDictionary dictionary] withKey:key];
+        setObjectToCache([NSMutableDictionary dictionary], key);
     }
-    return [self objectFromCache:key];
+    return objectFromCache(key);
     
 }
 

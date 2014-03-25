@@ -12,6 +12,6 @@
 
 #pragma mark - use in HandleCache
 
-+(NSString*) objectAddressString : (NSObject*) object;
+NSString* objectAddressString(NSObject* object);
 
 @end

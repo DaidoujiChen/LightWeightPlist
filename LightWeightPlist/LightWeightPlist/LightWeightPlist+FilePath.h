@@ -8,10 +8,10 @@
 
 #import "LightWeightPlist.h"
 
-#define ResourceFile(fmt) [LightWeightPlist resourceFolderPathWithFilename:fmt]
-#define DocumentFile(fmt) [LightWeightPlist documentFolderPathWithFilename:fmt]
+#define ResourceFile(fmt) resourceFolderPathWithFilename(fmt)
+#define DocumentFile(fmt) documentFolderPathWithFilename(fmt)
 
 @interface LightWeightPlist (FilePath)
-+(NSString*) resourceFolderPathWithFilename : (NSString*) filename;
-+(NSString*) documentFolderPathWithFilename : (NSString*) filename;
+NSString* resourceFolderPathWithFilename (NSString* filename);
+NSString* documentFolderPathWithFilename (NSString* filename);
 @end
