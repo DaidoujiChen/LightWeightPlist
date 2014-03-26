@@ -20,7 +20,7 @@
     
     id associatedObject = objc_getAssociatedObject(self, (__bridge const void *)obj);
     
-    NSString *filename = [PointerMapping objectForKey:objectAddressString(obj)];
+    NSString *filename = [PointerMapping(self) objectForKey:objectAddressString(obj)];
     
     NSString *path = DocumentFile(filename);
     
@@ -30,20 +30,20 @@
         [(NSArray*)associatedObject writeToFile:path atomically:YES];
     }
     
-    [PointerMapping removeObjectForKey:objectAddressString(obj)];
+    [PointerMapping(self) removeObjectForKey:objectAddressString(obj)];
     
 }
 
 #pragma mark - handle cahce
 
-BOOL setObjectToCache(id object, NSString* key) {
+BOOL setObjectToCache(id object, NSString* key, Class obj) {
     
     if ([object isKindOfClass:[NSDictionary class]] || [object isKindOfClass:[NSArray class]]) {
         NSObject *emptyObject = [NSObject new];
-        [Cache setObject:emptyObject
-                  forKey:key];
-        objc_setAssociatedObject(classItSelf, (__bridge const void *)[Cache objectForKey:key], object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [PointerMapping setObject:key forKey:objectAddressString(object)];
+        [Cache(obj) setObject:emptyObject
+                       forKey:key];
+        objc_setAssociatedObject(obj, (__bridge const void *)[Cache(obj) objectForKey:key], object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [PointerMapping(obj) setObject:key forKey:objectAddressString([Cache(obj) objectForKey:key])];
         return YES;
     } else {
         return NO;
@@ -51,17 +51,17 @@ BOOL setObjectToCache(id object, NSString* key) {
     
 }
 
-id objectFromCache(NSString* key) {
+id objectFromCache(NSString* key, Class obj) {
     
-    return objc_getAssociatedObject(classItSelf, (__bridge const void *)[Cache objectForKey:key]);
+    return objc_getAssociatedObject(obj, (__bridge const void *)[Cache(obj) objectForKey:key]);
     
 }
 
-void removeObjectFromCache(NSString* key) {
+void removeObjectFromCache(NSString* key, Class obj) {
     
-    if ([Cache objectForKey:key]) {
-        [PointerMapping removeObjectForKey:objectAddressString([Cache objectForKey:key])];
-        [Cache removeObjectForKey:key];
+    if ([Cache(obj) objectForKey:key]) {
+        [PointerMapping(obj) removeObjectForKey:objectAddressString([Cache(obj) objectForKey:key])];
+        [Cache(obj) removeObjectForKey:key];
     }
     
 }

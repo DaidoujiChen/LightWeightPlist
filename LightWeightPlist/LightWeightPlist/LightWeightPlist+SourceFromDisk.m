@@ -13,7 +13,7 @@
 
 @implementation LightWeightPlist (SourceFromDisk)
 
-id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
+id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource, Class obj) {
     NSString *path;
     
     if (inResource) {
@@ -22,7 +22,7 @@ id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
         path = DocumentFile(filename);
     }
     
-    if (![FileManager fileExistsAtPath:path]) {
+    if (![FileManager(obj) fileExistsAtPath:path]) {
         return nil;
     } else {
         if (isArray) {
@@ -33,20 +33,20 @@ id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
     }
 }
 
-NSMutableArray* arrayInDocument(NSString* key) {
-    return getPlistFile(key, YES, NO);
+NSMutableArray* arrayInDocument(NSString* key, Class obj) {
+    return getPlistFile(key, YES, NO, obj);
 }
 
-NSMutableArray* arrayInResource(NSString* key) {
-    return getPlistFile(key, YES, YES);
+NSMutableArray* arrayInResource(NSString* key, Class obj) {
+    return getPlistFile(key, YES, YES, obj);
 }
 
-NSMutableDictionary* dictionaryInDocument(NSString* key) {
-    return getPlistFile(key, NO, NO);
+NSMutableDictionary* dictionaryInDocument(NSString* key, Class obj) {
+    return getPlistFile(key, NO, NO, obj);
 }
 
-NSMutableDictionary* dictionaryInResource(NSString* key) {
-    return getPlistFile(key, NO, YES);
+NSMutableDictionary* dictionaryInResource(NSString* key, Class obj) {
+    return getPlistFile(key, NO, YES, obj);
 }
 
 @end

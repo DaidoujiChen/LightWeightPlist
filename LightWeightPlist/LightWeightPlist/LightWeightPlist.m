@@ -15,23 +15,19 @@
 
 @implementation LightWeightPlist
 
-+(void) load {
-    classItSelf = self;
-}
-
 #pragma mark - general function
 #pragma mark common
 
 +(void) delete : (NSString*) key {
 
-    [FileManager removeItemAtPath:DocumentFile(key) error:NULL];
-    removeObjectFromCache(key);
+    [FileManager(self) removeItemAtPath:DocumentFile(key) error:NULL];
+    removeObjectFromCache(key, self);
     
 }
 
 +(void) forceWrite {
     
-    [Cache removeAllObjects];
+    [Cache(self) removeAllObjects];
     
 }
 
@@ -39,15 +35,15 @@
 
 +(NSMutableArray*) array : (NSString*) key {
     
-    if (objectFromCache(key)) {
-    } else if (arrayInDocument(key)) {
-        setObjectToCache(arrayInDocument(key), key);
-    } else if (arrayInResource(key)) {
-        setObjectToCache(arrayInResource(key), key);
+    if (objectFromCache(key, self)) {
+    } else if (arrayInDocument(key, self)) {
+        setObjectToCache(arrayInDocument(key, self), key, self);
+    } else if (arrayInResource(key, self)) {
+        setObjectToCache(arrayInResource(key, self), key, self);
     } else {
-        setObjectToCache([NSMutableArray array], key);
+        setObjectToCache([NSMutableArray array], key, self);
     }
-    return objectFromCache(key);
+    return objectFromCache(key, self);
     
 }
 
@@ -55,15 +51,15 @@
 
 +(NSMutableDictionary*) dictionary : (NSString*) key {
     
-    if (objectFromCache(key)) {
-    } else if (dictionaryInDocument(key)) {
-        setObjectToCache(dictionaryInDocument(key), key);
-    } else if (dictionaryInResource(key)) {
-        setObjectToCache(dictionaryInResource(key), key);
+    if (objectFromCache(key, self)) {
+    } else if (dictionaryInDocument(key, self)) {
+        setObjectToCache(dictionaryInDocument(key, self), key, self);
+    } else if (dictionaryInResource(key, self)) {
+        setObjectToCache(dictionaryInResource(key, self), key, self);
     } else {
-        setObjectToCache([NSMutableDictionary dictionary], key);
+        setObjectToCache([NSMutableDictionary dictionary], key, self);
     }
-    return objectFromCache(key);
+    return objectFromCache(key, self);
     
 }
 

@@ -18,6 +18,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSDate *startDate = [NSDate date];
+    
+    for (int i=0; i<300000; i++) {
+        [LWPArray(@"myTest") addObject:[NSNumber numberWithInt:arc4random()%10000]];
+        
+        if (i%10000 == 0) {
+            [LWPArray(@"myTest") removeObjectAtIndex:arc4random()%[LWPArray(@"myTest") count]];
+        }
+    }
+
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970] - [startDate timeIntervalSince1970]);
+
 }
 
 - (void)didReceiveMemoryWarning {
