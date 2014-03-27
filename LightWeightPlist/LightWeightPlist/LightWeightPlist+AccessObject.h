@@ -9,6 +9,7 @@
 #import "LightWeightPlist.h"
 
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 #define Cache(fmt) dataCache(fmt)
 #define PointerMapping(fmt) pointerMapping(fmt)

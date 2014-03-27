@@ -14,4 +14,7 @@
 
 NSString* objectAddressString(NSObject* object);
 
+BOOL isArray(id object);
+BOOL isDictionary(id object);
+
 @end

@@ -8,31 +8,64 @@
 
 #import "LightWeightPlist+FilePath.h"
 
+#import "LightWeightPlist+AccessObject.h"
+
 @implementation LightWeightPlist (FilePath)
+
+typedef id (*invokeIMP)(id, SEL, ...);
 
 NSString* resourceFolderPath() {
     
-    return [[NSBundle mainBundle] bundlePath];
+    static NSString *resourceDirectory;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        resourceDirectory = [[NSBundle mainBundle] bundlePath];
+    });
+    
+    return resourceDirectory;
     
 }
 
 NSString* documentFolderPath() {
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    static NSString *documentsDirectory;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        documentsDirectory = [paths objectAtIndex:0];
+    });
+    
     return documentsDirectory;
     
 }
 
+static IMP stringByAppendingPathComponentIMP;
+
 NSString* resourceFolderPathWithFilename (NSString* filename) {
     
-    return [resourceFolderPath() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        stringByAppendingPathComponentIMP = class_getMethodImplementation([NSString class], @selector(stringByAppendingPathComponent:));
+    });
+    
+    invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
+
+    return stringByAppendingPathComponent(resourceFolderPath(), @selector(stringByAppendingPathComponent:), [NSString stringWithFormat:@"%@.plist", filename]);
     
 }
 
 NSString* documentFolderPathWithFilename (NSString* filename) {
     
-    return [documentFolderPath() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        stringByAppendingPathComponentIMP = class_getMethodImplementation([NSString class], @selector(stringByAppendingPathComponent:));
+    });
+    
+    invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
+    
+    return stringByAppendingPathComponent(documentFolderPath(), @selector(stringByAppendingPathComponent:), [NSString stringWithFormat:@"%@.plist", filename]);
     
 }
 

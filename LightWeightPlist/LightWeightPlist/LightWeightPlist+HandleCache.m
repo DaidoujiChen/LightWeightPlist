@@ -12,23 +12,28 @@
 #import "LightWeightPlist+MiscFunctions.h"
 #import "LightWeightPlist+FilePath.h"
 
+#define Bridge(fmt) ((__bridge const void *)fmt)
+
 @implementation LightWeightPlist (HandleCache)
 
 #pragma mark - NSCacheDelegate
 
 +(void) cache : (NSCache*) cache willEvictObject : (id) obj {
     
-    id associatedObject = objc_getAssociatedObject(self, (__bridge const void *)obj);
+    id associatedObject = objc_getAssociatedObject(self, Bridge(obj));
     
     NSString *filename = [PointerMapping(self) objectForKey:objectAddressString(obj)];
     
     NSString *path = DocumentFile(filename);
     
-    if ([associatedObject isKindOfClass:[NSDictionary class]]) {
-        [(NSDictionary*)associatedObject writeToFile:path atomically:YES];
-    } else if ([associatedObject isKindOfClass:[NSArray class]]) {
-        [(NSArray*)associatedObject writeToFile:path atomically:YES];
-    }
+    static BOOL atomically;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        atomically = YES;
+    });
+    
+    objc_msgSend(associatedObject, @selector(writeToFile:atomically:), path, &atomically);
     
     [PointerMapping(self) removeObjectForKey:objectAddressString(obj)];
     
@@ -38,11 +43,11 @@
 
 BOOL setObjectToCache(id object, NSString* key, Class obj) {
     
-    if ([object isKindOfClass:[NSDictionary class]] || [object isKindOfClass:[NSArray class]]) {
+    if (isDictionary(object) || isArray(object)) {
         NSObject *emptyObject = [NSObject new];
         [Cache(obj) setObject:emptyObject
                        forKey:key];
-        objc_setAssociatedObject(obj, (__bridge const void *)[Cache(obj) objectForKey:key], object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(obj, Bridge([Cache(obj) objectForKey:key]), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [PointerMapping(obj) setObject:key forKey:objectAddressString([Cache(obj) objectForKey:key])];
         return YES;
     } else {
@@ -53,7 +58,7 @@ BOOL setObjectToCache(id object, NSString* key, Class obj) {
 
 id objectFromCache(NSString* key, Class obj) {
     
-    return objc_getAssociatedObject(obj, (__bridge const void *)[Cache(obj) objectForKey:key]);
+    return objc_getAssociatedObject(obj, Bridge([Cache(obj) objectForKey:key]));
     
 }
 

@@ -15,30 +15,36 @@ static const char POINTERMAPPINGPOINTER;
 static const char FILEMANAGERPOINTER;
 
 NSCache* dataCache(Class object) {
-    
-    if (!objc_getAssociatedObject(object, &DATACACHEPOINTER)) {
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         NSCache *dataCache = [[NSCache alloc] init];
         [dataCache setDelegate:(id<NSCacheDelegate>)object];
         objc_setAssociatedObject(object, &DATACACHEPOINTER, dataCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    });
+    
     return objc_getAssociatedObject(object, &DATACACHEPOINTER);
     
 }
 
 NSMutableDictionary* pointerMapping(Class object) {
     
-    if (!objc_getAssociatedObject(object, &POINTERMAPPINGPOINTER)) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         objc_setAssociatedObject(object, &POINTERMAPPINGPOINTER, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    });
+
     return objc_getAssociatedObject(object, &POINTERMAPPINGPOINTER);
     
 }
 
 NSFileManager* fileManager(Class object) {
     
-    if (!objc_getAssociatedObject(object, &FILEMANAGERPOINTER)) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         objc_setAssociatedObject(object, &FILEMANAGERPOINTER, [NSFileManager defaultManager], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    });
+    
     return objc_getAssociatedObject(object, &FILEMANAGERPOINTER);
     
 }

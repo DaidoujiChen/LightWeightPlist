@@ -12,4 +12,15 @@
 NSString* objectAddressString(NSObject* object) {
     return [NSString stringWithFormat:@"%p", object];
 }
+
+BOOL isArray(id object) {
+    return (0 == strcmp(object_getClassName(object), "__NSArrayM") ||
+            0 == strcmp(object_getClassName(object), "__NSCFArray"));
+}
+
+BOOL isDictionary(id object) {
+    return (0 == strcmp(object_getClassName(object), "__NSDictionaryM") ||
+            0 == strcmp(object_getClassName(object), "__NSCFDictionary"));
+}
+
 @end
