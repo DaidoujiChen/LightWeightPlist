@@ -53,6 +53,21 @@
     
 }
 
++(NSMutableArray*) arrayFromResource : (NSString*) key {
+    
+    if (!objectFromCache(key, self)) {
+        NSMutableArray *returnObject = arrayInResource(key, self);
+        if (returnObject) {
+            setObjectToCache(returnObject, key, self);
+        } else {
+            setObjectToCache([NSMutableArray array], key, self);
+        }
+    }
+    
+    return objectFromCache(key, self);
+    
+}
+
 #pragma mark dictionary
 
 +(NSMutableDictionary*) dictionary : (NSString*) key {
@@ -71,6 +86,21 @@
         }
     }
 
+    return objectFromCache(key, self);
+    
+}
+
++(NSMutableDictionary*) dictionaryFromResource : (NSString*) key {
+    
+    if (!objectFromCache(key, self)) {
+        NSMutableDictionary *returnObject = dictionaryInResource(key, self);
+        if (returnObject) {
+            setObjectToCache(returnObject, key, self);
+        } else {
+            setObjectToCache([NSMutableDictionary dictionary], key, self);
+        }
+    }
+    
     return objectFromCache(key, self);
     
 }
