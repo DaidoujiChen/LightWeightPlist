@@ -47,7 +47,7 @@ NSString* resourceFolderPathWithFilename (NSString* filename) {
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        stringByAppendingPathComponentIMP = class_getMethodImplementation([NSString class], @selector(stringByAppendingPathComponent:));
+        stringByAppendingPathComponentIMP = class_getMethodImplementation(object_getClass(filename), @selector(stringByAppendingPathComponent:));
     });
     
     invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
@@ -60,7 +60,7 @@ NSString* documentFolderPathWithFilename (NSString* filename) {
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        stringByAppendingPathComponentIMP = class_getMethodImplementation([NSString class], @selector(stringByAppendingPathComponent:));
+        stringByAppendingPathComponentIMP = class_getMethodImplementation(object_getClass(filename), @selector(stringByAppendingPathComponent:));
     });
     
     invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
