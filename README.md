@@ -25,9 +25,11 @@ daidoujichen@gmail.com
 ======
 - 將 LightWeightPlist 資料夾下的檔案複製至專案內.
 - import LightWeightPlist.h 到需要使用的地方.
-- 只有四個 method 需要使用
+- 只有六個 function 需要使用
   - LWPArray, 讀取 plist 檔案作 nsmutablearray 使用.
+  - LWPArrayR, 強制讀取 resource folder 下的 plist 檔案作 nsmutablearray 使用.
   - LWPDictionary, 讀取 plist 檔案作 nsmutabledictionary 使用.
+  - LWPDictionaryR, 強制讀取 resource folder 下的 plist 檔案作 nsmutabledictionary 使用.
   - LWPDelete, 刪除某個名稱的檔案, 及其快取.
   - LWPForceWrite, 強制寫回 device.
   
