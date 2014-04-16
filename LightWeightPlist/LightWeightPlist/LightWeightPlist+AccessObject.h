@@ -11,12 +11,12 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-#define Cache(fmt) dataCache(fmt)
-#define PointerMapping(fmt) pointerMapping(fmt)
-#define FileManager(fmt) fileManager(fmt)
+#define Cache() dataCache()
+#define PointerMapping() pointerMapping()
+#define FileManager() fileManager()
 
 @interface LightWeightPlist (AccessObject)
-NSCache* dataCache(Class object);
-NSMutableDictionary* pointerMapping(Class object);
-NSFileManager* fileManager(Class object);
+NSCache* dataCache();
+NSMutableDictionary* pointerMapping();
+NSFileManager* fileManager();
 @end

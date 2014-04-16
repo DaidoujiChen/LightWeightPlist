@@ -14,38 +14,44 @@ static const char DATACACHEPOINTER;
 static const char POINTERMAPPINGPOINTER;
 static const char FILEMANAGERPOINTER;
 
-NSCache* dataCache(Class object) {
-
+NSCache* dataCache() {
+    
+    static id self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        self = [LightWeightPlist class];
         NSCache *dataCache = [[NSCache alloc] init];
-        [dataCache setDelegate:(id<NSCacheDelegate>)object];
-        objc_setAssociatedObject(object, &DATACACHEPOINTER, dataCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [dataCache setDelegate:(id<NSCacheDelegate>)self];
+        objc_setAssociatedObject(self, &DATACACHEPOINTER, dataCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
     
-    return objc_getAssociatedObject(object, &DATACACHEPOINTER);
+    return objc_getAssociatedObject(self, &DATACACHEPOINTER);
     
 }
 
-NSMutableDictionary* pointerMapping(Class object) {
+NSMutableDictionary* pointerMapping() {
     
+    static id self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        objc_setAssociatedObject(object, &POINTERMAPPINGPOINTER, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        self = [LightWeightPlist class];
+        objc_setAssociatedObject(self, &POINTERMAPPINGPOINTER, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
 
-    return objc_getAssociatedObject(object, &POINTERMAPPINGPOINTER);
+    return objc_getAssociatedObject(self, &POINTERMAPPINGPOINTER);
     
 }
 
-NSFileManager* fileManager(Class object) {
+NSFileManager* fileManager() {
     
+    static id self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        objc_setAssociatedObject(object, &FILEMANAGERPOINTER, [NSFileManager defaultManager], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        self = [LightWeightPlist class];
+        objc_setAssociatedObject(self, &FILEMANAGERPOINTER, [NSFileManager defaultManager], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
     
-    return objc_getAssociatedObject(object, &FILEMANAGERPOINTER);
+    return objc_getAssociatedObject(self, &FILEMANAGERPOINTER);
     
 }
 

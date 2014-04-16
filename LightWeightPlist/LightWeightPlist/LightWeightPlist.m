@@ -20,14 +20,14 @@
 
 +(void) delete : (NSString*) key {
 
-    [FileManager(self) removeItemAtPath:DocumentFile(key) error:NULL];
-    removeObjectFromCache(key, self);
+    [FileManager() removeItemAtPath:DocumentFile(key) error:NULL];
+    removeObjectFromCache(key);
     
 }
 
 +(void) forceWrite {
     
-    [Cache(self) removeAllObjects];
+    [Cache() removeAllObjects];
     
 }
 
@@ -35,36 +35,36 @@
 
 +(NSMutableArray*) array : (NSString*) key {
     
-    if (!objectFromCache(key, self)) {
-        NSMutableArray *returnObject = arrayInDocument(key, self);
+    if (!objectFromCache(key)) {
+        NSMutableArray *returnObject = arrayInDocument(key);
         if (returnObject) {
-            setObjectToCache(returnObject, key, self);
+            setObjectToCache(returnObject, key);
         } else {
-            returnObject = arrayInResource(key, self);
+            returnObject = arrayInResource(key);
             if (returnObject) {
-                setObjectToCache(returnObject, key, self);
+                setObjectToCache(returnObject, key);
             } else {
-                setObjectToCache([NSMutableArray array], key, self);
+                setObjectToCache([NSMutableArray array], key);
             }
         }
     }
 
-    return objectFromCache(key, self);
+    return objectFromCache(key);
     
 }
 
 +(NSMutableArray*) arrayFromResource : (NSString*) key {
     
-    if (!objectFromCache(key, self)) {
-        NSMutableArray *returnObject = arrayInResource(key, self);
+    if (!objectFromCache(key)) {
+        NSMutableArray *returnObject = arrayInResource(key);
         if (returnObject) {
-            setObjectToCache(returnObject, key, self);
+            setObjectToCache(returnObject, key);
         } else {
-            setObjectToCache([NSMutableArray array], key, self);
+            setObjectToCache([NSMutableArray array], key);
         }
     }
     
-    return objectFromCache(key, self);
+    return objectFromCache(key);
     
 }
 
@@ -72,36 +72,36 @@
 
 +(NSMutableDictionary*) dictionary : (NSString*) key {
     
-    if (!objectFromCache(key, self)) {
-        NSMutableDictionary *returnObject = dictionaryInDocument(key, self);
+    if (!objectFromCache(key)) {
+        NSMutableDictionary *returnObject = dictionaryInDocument(key);
         if (returnObject) {
-            setObjectToCache(returnObject, key, self);
+            setObjectToCache(returnObject, key);
         } else {
-            returnObject = dictionaryInResource(key, self);
+            returnObject = dictionaryInResource(key);
             if (returnObject) {
-                setObjectToCache(returnObject, key, self);
+                setObjectToCache(returnObject, key);
             } else {
-                setObjectToCache([NSMutableDictionary dictionary], key, self);
+                setObjectToCache([NSMutableDictionary dictionary], key);
             }
         }
     }
 
-    return objectFromCache(key, self);
+    return objectFromCache(key);
     
 }
 
 +(NSMutableDictionary*) dictionaryFromResource : (NSString*) key {
     
-    if (!objectFromCache(key, self)) {
-        NSMutableDictionary *returnObject = dictionaryInResource(key, self);
+    if (!objectFromCache(key)) {
+        NSMutableDictionary *returnObject = dictionaryInResource(key);
         if (returnObject) {
-            setObjectToCache(returnObject, key, self);
+            setObjectToCache(returnObject, key);
         } else {
-            setObjectToCache([NSMutableDictionary dictionary], key, self);
+            setObjectToCache([NSMutableDictionary dictionary], key);
         }
     }
     
-    return objectFromCache(key, self);
+    return objectFromCache(key);
     
 }
 
