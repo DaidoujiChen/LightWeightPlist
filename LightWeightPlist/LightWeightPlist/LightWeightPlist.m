@@ -18,14 +18,14 @@
 #pragma mark - general function
 #pragma mark common
 
-+(void) delete : (NSString*) key {
+void delete(NSString* key) {
 
     [FileManager() removeItemAtPath:DocumentFile(key) error:NULL];
     removeObjectFromCache(key);
     
 }
 
-+(void) forceWrite {
+void forceWrite() {
     
     [Cache() removeAllObjects];
     
@@ -33,7 +33,7 @@
 
 #pragma mark array
 
-+(NSMutableArray*) array : (NSString*) key {
+NSMutableArray* array(NSString* key) {
     
     if (!objectFromCache(key)) {
         NSMutableArray *returnObject = arrayInDocument(key);
@@ -53,7 +53,7 @@
     
 }
 
-+(NSMutableArray*) arrayFromResource : (NSString*) key {
+NSMutableArray* arrayFromResource(NSString* key) {
     
     if (!objectFromCache(key)) {
         NSMutableArray *returnObject = arrayInResource(key);
@@ -70,7 +70,7 @@
 
 #pragma mark dictionary
 
-+(NSMutableDictionary*) dictionary : (NSString*) key {
+NSMutableDictionary* dictionary(NSString* key) {
     
     if (!objectFromCache(key)) {
         NSMutableDictionary *returnObject = dictionaryInDocument(key);
@@ -90,7 +90,7 @@
     
 }
 
-+(NSMutableDictionary*) dictionaryFromResource : (NSString*) key {
+NSMutableDictionary* dictionaryFromResource(NSString* key) {
     
     if (!objectFromCache(key)) {
         NSMutableDictionary *returnObject = dictionaryInResource(key);

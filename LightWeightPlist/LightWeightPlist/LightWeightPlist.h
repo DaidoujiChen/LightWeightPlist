@@ -8,28 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-#define LWPArray(fmt) [LightWeightPlist array:fmt]
-#define LWPArrayR(fmt) [LightWeightPlist arrayFromResource:fmt]
-#define LWPDictionary(fmt) [LightWeightPlist dictionary:fmt]
-#define LWPDictionaryR(fmt) [LightWeightPlist dictionaryFromResource:fmt]
-#define LWPDelete(fmt) [LightWeightPlist delete:fmt]
-#define LWPForceWrite() [LightWeightPlist forceWrite]
+#define LWPArray(fmt) array(fmt)
+#define LWPArrayR(fmt) arrayFromResource(fmt)
+#define LWPDictionary(fmt) dictionary(fmt)
+#define LWPDictionaryR(fmt) dictionaryFromResource(fmt)
+#define LWPDelete(fmt) delete(fmt)
+#define LWPForceWrite() forceWrite()
 
 @interface LightWeightPlist : NSObject
 
 #pragma mark - Common
 
-+(void) delete : (NSString*) key;
-+(void) forceWrite;
+void delete(NSString* key);
+void forceWrite();
 
 #pragma mark - Array
 
-+(NSMutableArray*) array : (NSString*) key;
-+(NSMutableArray*) arrayFromResource : (NSString*) key;
+NSMutableArray* array(NSString* key);
+NSMutableArray* arrayFromResource(NSString* key);
 
 #pragma mark - Dictionary
 
-+(NSMutableDictionary*) dictionary : (NSString*) key;
-+(NSMutableDictionary*) dictionaryFromResource : (NSString*) key;
+NSMutableDictionary* dictionary(NSString* key);
+NSMutableDictionary* dictionaryFromResource(NSString* key);
 
 @end
