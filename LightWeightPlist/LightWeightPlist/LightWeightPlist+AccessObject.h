@@ -8,15 +8,16 @@
 
 #import "LightWeightPlist.h"
 
-#import <objc/runtime.h>
-#import <objc/message.h>
+#import "LightWeightPlistObjects.h"
 
-#define Cache() dataCache()
-#define PointerMapping() pointerMapping()
-#define FileManager() fileManager()
+#import <objc/runtime.h>
+
+#define Cache objects().dataCache
+#define PointerMapping objects().pointerMapping
+#define FileManager objects().fileManager
 
 @interface LightWeightPlist (AccessObject)
-NSCache* dataCache();
-NSMutableDictionary* pointerMapping();
-NSFileManager* fileManager();
+
+LightWeightPlistObjects* objects();
+
 @end

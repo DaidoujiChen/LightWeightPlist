@@ -20,14 +20,14 @@
 
 void delete(NSString* key) {
 
-    [FileManager() removeItemAtPath:DocumentFile(key) error:NULL];
+    [FileManager removeItemAtPath:DocumentFile(key) error:NULL];
     removeObjectFromCache(key);
     
 }
 
 void forceWrite() {
     
-    [Cache() removeAllObjects];
+    [Cache removeAllObjects];
     
 }
 

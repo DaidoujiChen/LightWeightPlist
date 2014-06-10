@@ -22,7 +22,7 @@ id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
         path = DocumentFile(filename);
     }
     
-    if (![FileManager() fileExistsAtPath:path]) {
+    if (![FileManager fileExistsAtPath:path]) {
         return nil;
     } else {
         if (isArray) {

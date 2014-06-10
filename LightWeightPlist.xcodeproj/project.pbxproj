@@ -27,6 +27,7 @@
 		014B9F5A18C576FC000F39BB /* LightWeightPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F5918C576FC000F39BB /* LightWeightPlist.m */; };
 		014B9F5D18C57825000F39BB /* LightWeightPlist+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */; };
 		014B9F6318C578FC000F39BB /* LightWeightPlist+FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */; };
+		01E71BE11946FC7E0003F566 /* LightWeightPlistObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E71BE01946FC7E0003F566 /* LightWeightPlistObjects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+AccessObject.m"; path = "LightWeightPlist/LightWeightPlist+AccessObject.m"; sourceTree = "<group>"; };
 		014B9F6118C578FC000F39BB /* LightWeightPlist+FilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+FilePath.h"; path = "LightWeightPlist/LightWeightPlist+FilePath.h"; sourceTree = "<group>"; };
 		014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+FilePath.m"; path = "LightWeightPlist/LightWeightPlist+FilePath.m"; sourceTree = "<group>"; };
+		01E71BDF1946FC7E0003F566 /* LightWeightPlistObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightWeightPlistObjects.h; path = LightWeightPlist/LightWeightPlistObjects.h; sourceTree = "<group>"; };
+		01E71BE01946FC7E0003F566 /* LightWeightPlistObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightWeightPlistObjects.m; path = LightWeightPlist/LightWeightPlistObjects.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				014B9F5918C576FC000F39BB /* LightWeightPlist.m */,
 				014B9F5B18C57825000F39BB /* LightWeightPlist+AccessObject.h */,
 				014B9F5C18C57825000F39BB /* LightWeightPlist+AccessObject.m */,
+				01E71BDF1946FC7E0003F566 /* LightWeightPlistObjects.h */,
+				01E71BE01946FC7E0003F566 /* LightWeightPlistObjects.m */,
 				014B9F6118C578FC000F39BB /* LightWeightPlist+FilePath.h */,
 				014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */,
 				011703BF18DA9D29001A0D8B /* LightWeightPlist+HandleCache.h */,
@@ -287,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E71BE11946FC7E0003F566 /* LightWeightPlistObjects.m in Sources */,
 				011703C118DA9D29001A0D8B /* LightWeightPlist+HandleCache.m in Sources */,
 				014B9F2E18C575D6000F39BB /* AppDelegate.m in Sources */,
 				014B9F5A18C576FC000F39BB /* LightWeightPlist.m in Sources */,
