@@ -16,8 +16,11 @@
 #define PointerMapping objects().pointerMapping
 #define FileManager objects().fileManager
 
+#define funcSelf functionSelf()
+
 @interface LightWeightPlist (AccessObject)
 
 LightWeightPlistObjects* objects();
+Class functionSelf();
 
 @end

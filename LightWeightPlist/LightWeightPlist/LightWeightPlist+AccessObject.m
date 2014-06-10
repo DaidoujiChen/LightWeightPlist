@@ -13,17 +13,24 @@
 static const char OBJECTSPOINTER;
 
 LightWeightPlistObjects* objects() {
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        LightWeightPlistObjects* objects = [LightWeightPlistObjects new];
+        [objects.dataCache setDelegate:(id<NSCacheDelegate>)funcSelf];
+        objc_setAssociatedObject(funcSelf, &OBJECTSPOINTER, objects, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(funcSelf, &OBJECTSPOINTER);
     
+}
+
+Class functionSelf() {
     static id self;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         self = [LightWeightPlist class];
-        LightWeightPlistObjects* objects = [LightWeightPlistObjects new];
-        [objects.dataCache setDelegate:(id<NSCacheDelegate>)self];
-        objc_setAssociatedObject(self, &OBJECTSPOINTER, objects, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
-    return objc_getAssociatedObject(self, &OBJECTSPOINTER);
-    
+    return self;
 }
 
 @end

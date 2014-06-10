@@ -45,17 +45,11 @@
 
 BOOL setObjectToCache(id object, NSString* key) {
     
-    static id self;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self = [LightWeightPlist class];
-    });
-    
     if (isDictionary(object) || isArray(object)) {
         NSObject *emptyObject = [NSObject new];
         [Cache setObject:emptyObject
                   forKey:key];
-        objc_setAssociatedObject(self, Bridge([Cache objectForKey:key]), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(funcSelf, Bridge([Cache objectForKey:key]), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [PointerMapping setObject:key forKey:objectAddressString([Cache objectForKey:key])];
         return YES;
     } else {
@@ -66,13 +60,7 @@ BOOL setObjectToCache(id object, NSString* key) {
 
 id objectFromCache(NSString* key) {
     
-    static id self;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self = [LightWeightPlist class];
-    });
-    
-    return objc_getAssociatedObject(self, Bridge([Cache objectForKey:key]));
+    return objc_getAssociatedObject(funcSelf, Bridge([Cache objectForKey:key]));
     
 }
 
