@@ -10,9 +10,9 @@
 
 @interface LightWeightPlist (SourceFromDisk)
 
-NSMutableArray* arrayInDocument(NSString* key);
-NSMutableArray* arrayInResource(NSString* key);
-NSMutableDictionary* dictionaryInDocument(NSString* key);
-NSMutableDictionary* dictionaryInResource(NSString* key);
++ (NSMutableArray *)arrayInDocument:(NSString *)key;
++ (NSMutableArray *)arrayInResource:(NSString *)key;
++ (NSMutableDictionary *)dictionaryInDocument:(NSString *)key;
++ (NSMutableDictionary *)dictionaryInResource:(NSString *)key;
 
 @end

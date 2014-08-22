@@ -11,66 +11,67 @@
 #import <objc/message.h>
 
 #import "LightWeightPlist+AccessObject.h"
-#import "LightWeightPlist+MiscFunctions.h"
 #import "LightWeightPlist+FilePath.h"
 
-#define Bridge(fmt) ((__bridge const void *)fmt)
+#define lwpBridge(fmt) ((__bridge const void *)fmt)
 
 @implementation LightWeightPlist (HandleCache)
 
 #pragma mark - NSCacheDelegate
 
-+(void) cache : (NSCache*) cache willEvictObject : (id) obj {
-    
-    id associatedObject = objc_getAssociatedObject(self, Bridge(obj));
-    
-    NSString *filename = [PointerMapping objectForKey:objectAddressString(obj)];
-    
-    NSString *path = DocumentFile(filename);
-    
-    static BOOL atomically;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        atomically = YES;
-    });
-    
-    objc_msgSend(associatedObject, @selector(writeToFile:atomically:), path, &atomically);
-    
-    [PointerMapping removeObjectForKey:objectAddressString(obj)];
-    
-}
-
-#pragma mark - handle cahce
-
-BOOL setObjectToCache(id object, NSString* key) {
-    
-    if (isDictionary(object) || isArray(object)) {
-        NSObject *emptyObject = [NSObject new];
-        [Cache setObject:emptyObject
-                  forKey:key];
-        objc_setAssociatedObject(funcSelf, Bridge([Cache objectForKey:key]), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [PointerMapping setObject:key forKey:objectAddressString([Cache objectForKey:key])];
-        return YES;
-    } else {
-        return NO;
++ (void)cache:(NSCache *)cache willEvictObject:(id)obj {
+    if ([lwpPointerMapping objectForKey:[self objectAddressString:obj]]) {
+        id associatedObject = objc_getAssociatedObject(self, lwpBridge(obj));
+        NSString *filename = [lwpPointerMapping objectForKey:[self objectAddressString:obj]];
+        NSString *path = lwpDocumentFile(filename);
+        [associatedObject performSelector:@selector(writeToFile:atomically:) withObject:path withObject:@YES];
+        [lwpPointerMapping removeObjectForKey:[self objectAddressString:obj]];
     }
-    
 }
 
-id objectFromCache(NSString* key) {
-    
-    return objc_getAssociatedObject(funcSelf, Bridge([Cache objectForKey:key]));
-    
+#pragma mark - class method
+
++ (BOOL)setObjectToCache:(id)object withKey:(NSString *)key
+{
+	if ([self isDictionary:object] || [self isArray:object]) {
+		NSObject *emptyObject = [NSObject new];
+		[lwpCache setObject:emptyObject forKey:key];
+		objc_setAssociatedObject(self, lwpBridge([lwpCache objectForKey:key]), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+		[lwpPointerMapping setObject:key forKey:[self objectAddressString:[lwpCache objectForKey:key]]];
+		return YES;
+	} else {
+		return NO;
+	}
 }
 
-void removeObjectFromCache(NSString* key) {
-    
-    if ([Cache objectForKey:key]) {
-        [PointerMapping removeObjectForKey:objectAddressString([Cache objectForKey:key])];
-        [Cache removeObjectForKey:key];
-    }
-    
++ (id)objectFromCache:(NSString *)key
+{
+	return objc_getAssociatedObject(self, lwpBridge([lwpCache objectForKey:key]));
+}
+
++ (void)removeObjectFromCache:(NSString *)key
+{
+	if ([lwpCache objectForKey:key]) {
+		[lwpPointerMapping removeObjectForKey:[self objectAddressString:[lwpCache objectForKey:key]]];
+		[lwpCache removeObjectForKey:key];
+	}
+}
+
+#pragma mark - private
+
++ (NSString *)objectAddressString:(NSObject *)object
+{
+	return [NSString stringWithFormat:@"%p", object];
+}
+
++ (BOOL)isArray:(id)object
+{
+	return (0 == strcmp(object_getClassName(object), "__NSArrayM") || 0 == strcmp(object_getClassName(object), "__NSCFArray"));
+}
+
++ (BOOL)isDictionary:(id)object
+{
+	return (0 == strcmp(object_getClassName(object), "__NSDictionaryM") || 0 == strcmp(object_getClassName(object), "__NSCFDictionary"));
 }
 
 @end

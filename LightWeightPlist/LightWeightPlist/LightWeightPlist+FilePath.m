@@ -12,61 +12,18 @@
 
 @implementation LightWeightPlist (FilePath)
 
-typedef id (*invokeIMP)(id, SEL, ...);
+#pragma mark - class method
 
-NSString* resourceFolderPath() {
-    
-    static NSString *resourceDirectory;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        resourceDirectory = [[NSBundle mainBundle] bundlePath];
-    });
-    
-    return resourceDirectory;
-    
++ (NSString *)resourceFolderPathWithFilename:(NSString *)filename
+{
+	return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
 }
 
-NSString* documentFolderPath() {
-    
-    static NSString *documentsDirectory;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        documentsDirectory = [paths objectAtIndex:0];
-    });
-    
-    return documentsDirectory;
-    
-}
-
-static IMP stringByAppendingPathComponentIMP;
-
-NSString* resourceFolderPathWithFilename (NSString* filename) {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        stringByAppendingPathComponentIMP = class_getMethodImplementation(object_getClass(filename), @selector(stringByAppendingPathComponent:));
-    });
-    
-    invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
-
-    return stringByAppendingPathComponent(resourceFolderPath(), @selector(stringByAppendingPathComponent:), [NSString stringWithFormat:@"%@.plist", filename]);
-    
-}
-
-NSString* documentFolderPathWithFilename (NSString* filename) {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        stringByAppendingPathComponentIMP = class_getMethodImplementation(object_getClass(filename), @selector(stringByAppendingPathComponent:));
-    });
-    
-    invokeIMP stringByAppendingPathComponent = (invokeIMP) stringByAppendingPathComponentIMP;
-    
-    return stringByAppendingPathComponent(documentFolderPath(), @selector(stringByAppendingPathComponent:), [NSString stringWithFormat:@"%@.plist", filename]);
-    
++ (NSString *)documentFolderPathWithFilename:(NSString *)filename
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+	return [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", filename]];
 }
 
 @end

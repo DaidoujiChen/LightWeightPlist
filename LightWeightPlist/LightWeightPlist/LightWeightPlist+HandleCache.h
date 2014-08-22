@@ -9,7 +9,9 @@
 #import "LightWeightPlist.h"
 
 @interface LightWeightPlist (HandleCache) <NSCacheDelegate>
-BOOL setObjectToCache(id object, NSString* key);
-id objectFromCache(NSString* key);
-void removeObjectFromCache(NSString* key);
+
++ (BOOL)setObjectToCache:(id)object withKey:(NSString *)key;
++ (id)objectFromCache:(NSString *)key;
++ (void)removeObjectFromCache:(NSString *)key;
+
 @end

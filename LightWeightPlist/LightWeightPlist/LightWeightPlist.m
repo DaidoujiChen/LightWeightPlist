@@ -15,94 +15,79 @@
 
 @implementation LightWeightPlist
 
-#pragma mark - general function
-#pragma mark common
+#pragma mark - common
 
-void delete(NSString* key) {
-
-    [FileManager removeItemAtPath:DocumentFile(key) error:NULL];
-    removeObjectFromCache(key);
-    
++ (void)lwpDelete:(NSString *)key
+{
+	[[NSFileManager defaultManager] removeItemAtPath:lwpDocumentFile(key) error:NULL];
+    [self removeObjectFromCache:key];
 }
 
-void forceWrite() {
-    
-    [Cache removeAllObjects];
-    
++ (void)lwpForceWrite
+{
+	[lwpCache removeAllObjects];
 }
 
-#pragma mark array
+#pragma mark - array
 
-NSMutableArray* array(NSString* key) {
-    
-    if (!objectFromCache(key)) {
-        NSMutableArray *returnObject = arrayInDocument(key);
-        if (returnObject) {
-            setObjectToCache(returnObject, key);
-        } else {
-            returnObject = arrayInResource(key);
-            if (returnObject) {
-                setObjectToCache(returnObject, key);
-            } else {
-                setObjectToCache([NSMutableArray array], key);
-            }
-        }
-    }
-
-    return objectFromCache(key);
-    
++ (NSMutableArray *)lwpArray:(NSString *)key
+{
+	if (![self objectFromCache:key]) {
+        NSMutableArray *returnObject;
+		returnObject = [self arrayInDocument:key];
+		if (!returnObject) {
+			returnObject = [self arrayInResource:key];
+			if (!returnObject) {
+                returnObject = [NSMutableArray array];
+			}
+		}
+        [self setObjectToCache:returnObject withKey:key];
+	}
+	return [self objectFromCache:key];
 }
 
-NSMutableArray* arrayFromResource(NSString* key) {
-    
-    if (!objectFromCache(key)) {
-        NSMutableArray *returnObject = arrayInResource(key);
-        if (returnObject) {
-            setObjectToCache(returnObject, key);
-        } else {
-            setObjectToCache([NSMutableArray array], key);
-        }
-    }
-    
-    return objectFromCache(key);
-    
++ (NSMutableArray *)lwpArrayFromResource:(NSString *)key
+{
+	if (![self objectFromCache:key]) {
+		NSMutableArray *returnObject;
+        returnObject = [self arrayInResource:key];
+		if (!returnObject) {
+            returnObject = [NSMutableArray array];
+		}
+        [self setObjectToCache:returnObject withKey:key];
+	}
+	return [self objectFromCache:key];
 }
 
-#pragma mark dictionary
+#pragma mark - dictionary
 
-NSMutableDictionary* dictionary(NSString* key) {
-    
-    if (!objectFromCache(key)) {
-        NSMutableDictionary *returnObject = dictionaryInDocument(key);
-        if (returnObject) {
-            setObjectToCache(returnObject, key);
-        } else {
-            returnObject = dictionaryInResource(key);
-            if (returnObject) {
-                setObjectToCache(returnObject, key);
-            } else {
-                setObjectToCache([NSMutableDictionary dictionary], key);
-            }
-        }
-    }
-
-    return objectFromCache(key);
-    
++ (NSMutableDictionary *)lwpDictionary:(NSString *)key
+{
+	if (![self objectFromCache:key]) {
+		NSMutableDictionary *returnObject;
+        returnObject = [self dictionaryInDocument:key];
+		if (!returnObject) {
+			returnObject = [self dictionaryInResource:key];
+			if (!returnObject) {
+                returnObject = [NSMutableDictionary dictionary];
+			}
+		}
+        [self setObjectToCache:returnObject withKey:key];
+	}
+	return [self objectFromCache:key];
 }
 
-NSMutableDictionary* dictionaryFromResource(NSString* key) {
-    
-    if (!objectFromCache(key)) {
-        NSMutableDictionary *returnObject = dictionaryInResource(key);
-        if (returnObject) {
-            setObjectToCache(returnObject, key);
-        } else {
-            setObjectToCache([NSMutableDictionary dictionary], key);
-        }
-    }
-    
-    return objectFromCache(key);
-    
++ (NSMutableDictionary *)lwpDictionaryFromResource:(NSString *)key
+{
+	if (![self objectFromCache:key]) {
+		NSMutableDictionary *returnObject;
+        returnObject = [self dictionaryInResource:key];
+		if (!returnObject) {
+            returnObject = [NSMutableDictionary dictionary];
+		}
+        [self setObjectToCache:returnObject withKey:key];
+	}
+	return [self objectFromCache:key];
 }
 
 @end

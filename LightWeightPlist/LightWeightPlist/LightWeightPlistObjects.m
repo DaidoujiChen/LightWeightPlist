@@ -10,16 +10,16 @@
 
 @implementation LightWeightPlistObjects
 
--(id) init {
-    
-    self = [super init];
-    if (self) {
-        self.dataCache = [NSCache new];
-        self.pointerMapping = [NSMutableDictionary dictionary];
-        self.fileManager = [NSFileManager defaultManager];
-    }
-    return self;
-    
+#pragma mark - life cycle
+
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		self.dataCache = [NSCache new];
+		self.pointerMapping = [NSMutableDictionary dictionary];
+	}
+	return self;
 }
 
 @end

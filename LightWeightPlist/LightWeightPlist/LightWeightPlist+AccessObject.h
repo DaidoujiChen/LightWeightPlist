@@ -10,17 +10,11 @@
 
 #import "LightWeightPlistObjects.h"
 
-#import <objc/runtime.h>
-
-#define Cache objects().dataCache
-#define PointerMapping objects().pointerMapping
-#define FileManager objects().fileManager
-
-#define funcSelf functionSelf()
+#define lwpCache [LightWeightPlist objects].dataCache
+#define lwpPointerMapping [LightWeightPlist objects].pointerMapping
 
 @interface LightWeightPlist (AccessObject)
 
-LightWeightPlistObjects* objects();
-Class functionSelf();
++ (LightWeightPlistObjects *)objects;
 
 @end

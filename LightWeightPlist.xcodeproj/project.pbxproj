@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		011703C118DA9D29001A0D8B /* LightWeightPlist+HandleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 011703C018DA9D29001A0D8B /* LightWeightPlist+HandleCache.m */; };
-		011703C418DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 011703C318DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.m */; };
 		011703C718DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 011703C618DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.m */; };
+		0124CFA819A7193700E5DE4F /* PlistArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0124CFA719A7193700E5DE4F /* PlistArray.plist */; };
+		0124CFAA19A7195F00E5DE4F /* PlistDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0124CFA919A7195F00E5DE4F /* PlistDictionary.plist */; };
 		014B9F1E18C575D6000F39BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F1D18C575D6000F39BB /* Foundation.framework */; };
 		014B9F2018C575D6000F39BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F1F18C575D6000F39BB /* CoreGraphics.framework */; };
 		014B9F2218C575D6000F39BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B9F2118C575D6000F39BB /* UIKit.framework */; };
@@ -43,10 +44,10 @@
 /* Begin PBXFileReference section */
 		011703BF18DA9D29001A0D8B /* LightWeightPlist+HandleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+HandleCache.h"; path = "LightWeightPlist/LightWeightPlist+HandleCache.h"; sourceTree = "<group>"; };
 		011703C018DA9D29001A0D8B /* LightWeightPlist+HandleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+HandleCache.m"; path = "LightWeightPlist/LightWeightPlist+HandleCache.m"; sourceTree = "<group>"; };
-		011703C218DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+MiscFunctions.h"; path = "LightWeightPlist/LightWeightPlist+MiscFunctions.h"; sourceTree = "<group>"; };
-		011703C318DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+MiscFunctions.m"; path = "LightWeightPlist/LightWeightPlist+MiscFunctions.m"; sourceTree = "<group>"; };
 		011703C518DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LightWeightPlist+SourceFromDisk.h"; path = "LightWeightPlist/LightWeightPlist+SourceFromDisk.h"; sourceTree = "<group>"; };
 		011703C618DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LightWeightPlist+SourceFromDisk.m"; path = "LightWeightPlist/LightWeightPlist+SourceFromDisk.m"; sourceTree = "<group>"; };
+		0124CFA719A7193700E5DE4F /* PlistArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlistArray.plist; sourceTree = "<group>"; };
+		0124CFA919A7195F00E5DE4F /* PlistDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlistDictionary.plist; sourceTree = "<group>"; };
 		014B9F1A18C575D6000F39BB /* LightWeightPlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeightPlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014B9F1D18C575D6000F39BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		014B9F1F18C575D6000F39BB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -152,6 +153,8 @@
 				014B9F2618C575D6000F39BB /* InfoPlist.strings */,
 				014B9F2918C575D6000F39BB /* main.m */,
 				014B9F2B18C575D6000F39BB /* LightWeightPlist-Prefix.pch */,
+				0124CFA719A7193700E5DE4F /* PlistArray.plist */,
+				0124CFA919A7195F00E5DE4F /* PlistDictionary.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -187,8 +190,6 @@
 				014B9F6218C578FC000F39BB /* LightWeightPlist+FilePath.m */,
 				011703BF18DA9D29001A0D8B /* LightWeightPlist+HandleCache.h */,
 				011703C018DA9D29001A0D8B /* LightWeightPlist+HandleCache.m */,
-				011703C218DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.h */,
-				011703C318DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.m */,
 				011703C518DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.h */,
 				011703C618DA9F53001A0D8B /* LightWeightPlist+SourceFromDisk.m */,
 			);
@@ -272,6 +273,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				014B9F3618C575D6000F39BB /* Images.xcassets in Resources */,
+				0124CFAA19A7195F00E5DE4F /* PlistDictionary.plist in Resources */,
+				0124CFA819A7193700E5DE4F /* PlistArray.plist in Resources */,
 				014B9F5618C57618000F39BB /* MainViewController.xib in Resources */,
 				014B9F2818C575D6000F39BB /* InfoPlist.strings in Resources */,
 			);
@@ -300,7 +303,6 @@
 				014B9F6318C578FC000F39BB /* LightWeightPlist+FilePath.m in Sources */,
 				014B9F5518C57618000F39BB /* MainViewController.m in Sources */,
 				014B9F5D18C57825000F39BB /* LightWeightPlist+AccessObject.m in Sources */,
-				011703C418DA9DBB001A0D8B /* LightWeightPlist+MiscFunctions.m in Sources */,
 				014B9F2A18C575D6000F39BB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

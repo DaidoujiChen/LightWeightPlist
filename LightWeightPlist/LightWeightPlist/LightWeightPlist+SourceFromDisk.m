@@ -13,40 +13,49 @@
 
 @implementation LightWeightPlist (SourceFromDisk)
 
-id getPlistFile(NSString* filename, BOOL isArray, BOOL inResource) {
-    NSString *path;
+#pragma mark - class method
+
++ (NSMutableArray *)arrayInDocument:(NSString *)key
+{
+	return [self getPlistFile:key isArray:YES inResource:NO];
+}
+
++ (NSMutableArray *)arrayInResource:(NSString *)key
+{
+	return [self getPlistFile:key isArray:YES inResource:YES];
+}
+
++ (NSMutableDictionary *)dictionaryInDocument:(NSString *)key
+{
+	return [self getPlistFile:key isArray:NO inResource:NO];
+}
+
++ (NSMutableDictionary *)dictionaryInResource:(NSString *)key
+{
+	return [self getPlistFile:key isArray:NO inResource:YES];
+}
+
+#pragma mark - private
+
++ (id)getPlistFile:(NSString *)filename isArray:(BOOL)isArray inResource:(BOOL)inResource
+{
+	NSString *path;
     
-    if (inResource) {
-        path = ResourceFile(filename);
-    } else {
-        path = DocumentFile(filename);
-    }
+	if (inResource) {
+		path = lwpResourceFile(filename);
+	} else {
+		path = lwpDocumentFile(filename);
+	}
     
-    if (![FileManager fileExistsAtPath:path]) {
-        return nil;
-    } else {
-        if (isArray) {
-            return [NSMutableArray arrayWithContentsOfFile:path];
-        } else {
-            return [NSMutableDictionary dictionaryWithContentsOfFile:path];
-        }
-    }
-}
-
-NSMutableArray* arrayInDocument(NSString* key) {
-    return getPlistFile(key, YES, NO);
-}
-
-NSMutableArray* arrayInResource(NSString* key) {
-    return getPlistFile(key, YES, YES);
-}
-
-NSMutableDictionary* dictionaryInDocument(NSString* key) {
-    return getPlistFile(key, NO, NO);
-}
-
-NSMutableDictionary* dictionaryInResource(NSString* key) {
-    return getPlistFile(key, NO, YES);
+	if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+		return nil;
+	} else {
+		if (isArray) {
+			return [NSMutableArray arrayWithContentsOfFile:path];
+		} else {
+			return [NSMutableDictionary dictionaryWithContentsOfFile:path];
+		}
+	}
 }
 
 @end

@@ -10,8 +10,7 @@
 
 @interface LightWeightPlistObjects : NSObject
 
-@property (nonatomic, strong) NSCache* dataCache;
-@property (nonatomic, strong) NSMutableDictionary* pointerMapping;
-@property (nonatomic, strong) NSFileManager* fileManager;
+@property (nonatomic, strong) NSCache *dataCache;
+@property (nonatomic, strong) NSMutableDictionary *pointerMapping;
 
 @end
