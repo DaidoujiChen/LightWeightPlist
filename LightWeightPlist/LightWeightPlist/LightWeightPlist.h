@@ -14,11 +14,7 @@
 #define LWPDictionaryR(fmt) [LightWeightPlist lwpDictionaryFromResource:fmt]
 #define LWPDelete(fmt) [LightWeightPlist lwpDelete:fmt]
 #define LWPForceWrite() [LightWeightPlist lwpForceWrite]
-
-#define LWPSafe(fmt)                            \
-@synchronized([LightWeightPlist class]) {       \
-    fmt;                                        \
-}
+#define LWPForceWriteSpecific(fmt) [LightWeightPlist lwpForceWriteSpecific:fmt]
 
 @interface LightWeightPlist : NSObject
 
@@ -26,6 +22,8 @@
 
 + (void)lwpDelete:(NSString *)key;
 + (void)lwpForceWrite;
++ (void)lwpForceWriteSpecific:(NSString *)key;
++ (void)lwpSafe:(void (^)(void))safeBlock;
 
 #pragma mark - Array
 

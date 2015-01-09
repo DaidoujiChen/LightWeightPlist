@@ -28,6 +28,20 @@
 	[lwpCache removeAllObjects];
 }
 
++ (void)lwpForceWriteSpecific:(NSString *)key
+{
+    [self writeObjectFromCache:key];
+}
+
++ (void)lwpSafe:(void (^)(void))safeBlock
+{
+    if ([NSThread isMainThread]) {
+        safeBlock();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), safeBlock);
+    }
+}
+
 #pragma mark - array
 
 + (NSMutableArray *)lwpArray:(NSString *)key
@@ -42,7 +56,7 @@
 			}
 		}
         [self setObjectToCache:returnObject withKey:key];
-	}
+    }
 	return [self objectFromCache:key];
 }
 
